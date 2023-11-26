@@ -29,6 +29,9 @@ TARGET_CPU_VARIANT := cortex-a76
 # Audio 
 BOARD_USES_ALSA_AUDIO := true
 
+# Enable 64-bit for non-zygote.
+ZYGOTE_FORCE_64 := true
+
 # Build the 32 bit targets
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
