@@ -133,6 +133,9 @@ PRODUCT_PACKAGES += \
     libutilscallstack.vendor \
     libion.vendor
 
+PRODUCT_PACKAGES += \
+    ANGLE
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
