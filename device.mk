@@ -131,10 +131,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1.vendor
 
-# FM Radio
-PRODUCT_PACKAGES += \
-    FMRadio
-
 # Gatekeeper
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
@@ -165,18 +161,6 @@ PRODUCT_PACKAGES += \
     libhwbinder \
     libhwbinder.vendor
 
-# IMS
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/mediatek-carrier-config-manager.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-carrier-config-manager.xml \
-    $(LOCAL_PATH)/configs/permissions/mediatek-common.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-common.xml \
-    $(LOCAL_PATH)/configs/permissions/mediatek-framework.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-framework.xml \
-    $(LOCAL_PATH)/configs/permissions/mediatek-ims-base.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-ims-base.xml \
-    $(LOCAL_PATH)/configs/permissions/mediatek-ims-common.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-ims-common.xml \
-    $(LOCAL_PATH)/configs/permissions/mediatek-telecom-common.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-telecom-common.xml \
-    $(LOCAL_PATH)/configs/permissions/mediatek-telephony-base.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-telephony-base.xml \
-    $(LOCAL_PATH)/configs/permissions/mediatek-telephony-common.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-telephony-common.xml \
-    $(LOCAL_PATH)/configs/permissions/privapp-permissions-com.mediatek.ims.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-com.mediatek.ims.xml
-
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/mtk-tpd.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/mtk-tpd.kl
@@ -201,11 +185,7 @@ PRODUCT_PACKAGES += \
     libstagefright_foundation-v33
 
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media,$(TARGET_COPY_OUT_VENDOR)/etc) \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/seccomp,$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy) \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media,$(TARGET_COPY_OUT_VENDOR)/etc)
 
 # Modules
 PRODUCT_PACKAGES += \
@@ -232,20 +212,20 @@ PRODUCT_COPY_FILES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    FrameworksResOverlayX6739 \
-    PowerOffAlarmOverlayX6739 \
-    SettingsOverlayX6739 \
-    SettingsProviderOverlayX6739 \
-    SystemUIOverlayX6739 \
-    TelephonyOverlayX6739 \
-    TetheringResOverlayX6739 \
-    WifiResOverlayX6739
+    FrameworksResOverlayCK8n \
+    PowerOffAlarmOverlayCK8n \
+    SettingsOverlayCK8n \
+    SettingsProviderOverlayCK8n \
+    SystemUIOverlayCK8n \
+    TelephonyOverlayCK8n \
+    TetheringResOverlayCK8n \
+    WifiResOverlayCK8n
 
 PRODUCT_PACKAGES += \
-    LineageApertureOverlayX6739 \
-    LineageDialerOverlayX6739 \
-    LineageSDKOverlayX6739 \
-    LineageSettingsOverlayX6739
+    LineageApertureOverlayCK8n \
+    LineageDialerOverlayCK8n \
+    LineageSDKOverlayCK8n \
+    LineageSettingsOverlayCK8n
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -371,8 +351,7 @@ PRODUCT_PACKAGES += \
     libbase_shim \
     libcamera_metadata_shim \
     libhidlbase_shim \
-    libprocessgroup_shim \
-    libui_shim
+    libprocessgroup_shim
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 33
@@ -384,7 +363,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/mediatek \
-    hardware/mediatek/libmtkperf_client
+    hardware/mediatek/libmtkperf_client \
+    hardware/transsion
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -401,10 +381,8 @@ PRODUCT_PACKAGES += \
     android.hardware.usb.gadget-service.mediatek
 
 # Vibrator
-VIBRATOR_SUPPORTS_EFFECTS := true
-
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.mediatek.x6739
+    android.hardware.vibrator-service.transsion
 
 # VNDK
 PRODUCT_PACKAGES += \
@@ -427,4 +405,4 @@ PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/infinix/X6739/X6739-vendor.mk)
+$(call inherit-product, vendor/tecno/CK8n/CK8n-vendor.mk)
