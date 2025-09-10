@@ -1,22 +1,53 @@
 # Camera
-/data/vendor/camera_watermark(/.*)?                                                                             u:object_r:vendor_watermark_data_file:s0
-/data/vendor/multicam(/.*)?                                                                                     u:object_r:transsion_camera_data_file:s0
-/sys/devices/platform/(odm/odm:tran_battery|tran_battery)/tran_cam                                              u:object_r:sysfs_tran_cam_file:s0
-/vendor/bin/hw/vendor\.transsion\.hardware\.trancam\.trancamserver@1\.0-service                                 u:object_r:trancamserver_exec:s0
+/dev/cml421_ois(/.*)?                                                                   u:object_r:cml421_ois_device:s0
+/dev/cwvi5300                                                                           u:object_r:cwvi5300_device:s0
+/data/vendor/camera_watermark(/.*)?                                                     u:object_r:vendor_watermark_data_file:s0
+/data/vendor/multicam(/.*)?                                                             u:object_r:transsion_camera_data_file:s0
 
 # Charger
-/sys/devices/platform/charger/tran_battery_cycle                                                                u:object_r:sysfs_bat_cycle:s0
-/sys/devices/platform/odm/odm:tran_auto_test/power_supply/tran-auto-test(/.*)                                   u:object_r:sysfs_tran_auto_test:s0
+/(vendor|system/vendor)/bin/chg_sence                                                   u:object_r:chg_sence_exec:s0
+/sys/devices/platform/charger/tran_battery_cycle                                        u:object_r:sysfs_bat_cycle:s0
+
+# Data
+/data/storage_dbg(/.*)?                                                                 u:object_r:storage_dbg_data_file:s0
+
+# Extcon
+/sys/devices/platform/extcon_usb/extcon/extcon0/cable.1/state                           u:object_r:sysfs_OTG_STATE_file:s0
 
 # Fingerprint
-/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service-mediatek                                 u:object_r:hal_fingerprint_default_exec:s0
+/(system\/vendor|vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service-mediatek    u:object_r:hal_fingerprint_default_exec:s0
+/sys/kernel/tran_fp(/.*)?                                                                       u:object_r:sysfs_fp_name_path:s0
+/data/vendor/goodix/gf_data(/.*)?                                                               u:object_r:vendor_gf_data_file:s0
 
 # kmsetkey
-/(vendor|system\/vendor)/bin/kmsetkey_ca.trustonic                                                              u:object_r:trustonic_kmsetkey_ca_exec:s0
+/(vendor|system\/vendor)/bin/kmsetkey_ca.trustonic                                              u:object_r:trustonic_kmsetkey_ca_exec:s0
+
+# Raw HID device
+/dev/hidraw[0-9]*                                                                               u:object_r:hidraw_device:s0
+
+# tne
+/(system\/vendor|vendor)/bin/hw/vendor.tne@1.0-service                                          u:object_r:tnev_exec:s0
+/dev/tnek                                                                                       u:object_r:tneengine_tnek_file:s0
+
+# tran_auto_test
+/sys/devices/platform/odm/odm:tran_auto_test/power_supply/tran-auto-test(/.*)                   u:object_r:sysfs_tran_auto_test:s0
+
+# Trancam
+/(system\/vendor|vendor)/bin/hw/vendor.transsion.hardware.trancam.trancamserver@1.0-service     u:object_r:trancamserver_exec:s0
+/sys/devices/platform/(odm/odm:tran_battery|tran_battery)/tran_cam                              u:object_r:sysfs_tran_cam_file:s0
 
 # Tranfs
-/dev/block/sdc62                                                                                                u:object_r:tranfs_block_device:s0
+/dev/block/sdc62                                                                        u:object_r:tranfs_block_device:s0
+
+# tranHwInfo
+/(system\/vendor|vendor)/bin/hw/vendor\.mediatek\.hardware\.tranHwInfo@(.*)-service u:object_r:tran_hwinfo_binder_exec:s0
+
+# Tranlog
+/(system\/vendor|vendor)/bin/tranlog                                                            u:object_r:tranlog_exec:s0
+/dev/tranlog_kernel                                                                             u:object_r:tranlog_device:s0
+/dev/tranlog_ctl                                                                                u:object_r:tranlog_device:s0
+/dev/tranlog_user                                                                               u:object_r:tranlog_device_user:s0
+/(system\/vendor|vendor)/bin/tranlogconfig                                                      u:object_r:tranlogconfig_exec:s0
 
 # Vibrator
-/sys/devices/platform/soc/11d03000.i2c/i2c-7/7-0058/leds/vibrator_single(/.*)?                                  u:object_r:sysfs_vibrator:s0
-/vendor/bin/hw/android\.hardware\.vibrator-service\.mediatek\.x6739                                             u:object_r:hal_vibrator_default_exec:s0
+/sys/devices/platform/soc/11d03000.i2c/i2c-7/7-0058/leds/vibrator_single(/.*)?                  u:object_r:sysfs_vibrator:s0

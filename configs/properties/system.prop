@@ -1,2 +1,156 @@
-# Dex
-dalvik.vm.dex2oat64.enabled=true
+# AEE
+ro.vendor.have_aee_feature=1
+persist.vendor.mtk.aee.filter=0
+
+# AF
+vendor.af.dynamic.sleeptime.enable=true
+vendor.af.pausewait.enable=false
+vendor.af.threshold.src_and_effect_count=5
+
+# Audio
+ro.audio.silent=0
+ro.audio.usb.period_us=16000
+ro.config.vc_call_vol_default=11
+ro.config.media_vol_default=13
+ro.config.alarm_vol_default=13
+ro.config.system_vol_default=15
+persist.vendor.anr.dumpthr=1
+
+# Bluetooth
+bluetooth.profile.asha.central.enabled=true
+
+# Blur
+ro.surface_flinger.supports_background_blur=1
+ro.sf.blurs_are_expensive=1
+
+# Brand
+Build.BRAND=MTK
+
+# Camera
+ro.camera.sound.forced=0
+vendor.camera.tran.nums=1
+
+# Dalvik
+dalvik.vm.ps-min-first-save-ms=150000
+dalvik.vm.image-dex2oat-Xms=64m
+dalvik.vm.image-dex2oat-Xmx=64m
+dalvik.vm.dex2oat-Xms=64m
+dalvik.vm.dex2oat-Xmx=512m
+dalvik.vm.usejit=true
+dalvik.vm.usejitprofiles=true
+dalvik.vm.dexopt.secondary=true
+dalvik.vm.dexopt.thermal-cutoff=2
+dalvik.vm.appimageformat=lz4
+ro.dalvik.vm.native.bridge=0
+dalvik.vm.dex2oat-resolve-startup-strings=true
+dalvik.vm.dex2oat-max-image-block-size=524288
+dalvik.vm.minidebuginfo=true
+dalvik.vm.dex2oat-minidebuginfo=true
+
+# Dexopt
+pm.dexopt.first-boot=quicken
+pm.dexopt.boot=verify
+pm.dexopt.boot-after-ota=verify
+pm.dexopt.post-boot=extract
+pm.dexopt.install=speed-profile
+pm.dexopt.install-fast=skip
+pm.dexopt.install-bulk=speed-profile
+pm.dexopt.install-bulk-secondary=verify
+pm.dexopt.install-bulk-downgraded=verify
+pm.dexopt.install-bulk-secondary-downgraded=extract
+pm.dexopt.bg-dexopt=speed-profile
+pm.dexopt.ab-ota=speed-profile
+pm.dexopt.inactive=verify
+pm.dexopt.cmdline=verify
+pm.dexopt.shared=speed
+
+# Fuse passthrough
+persist.sys.fuse.passthrough.enable=true
+
+# GPU
+ro.opengles.version=196610
+
+# IMS
+persist.dbg.volte_avail_ovr=1
+persist.dbg.vt_avail_ovr=1
+persist.dbg.wfc_avail_ovr=1
+
+# Kernel
+ro.kernel.zio=38,108,105,16
+ro.iorapd.enable=false
+
+# Media
+debug.stagefright.c2inputsurface=-1
+media.stagefright.thumbnail.prefer_hw_codecs=true
+vendor.mtk_thumbnail_optimization=true
+ro.vendor.mtk_flv_playback_support=1
+
+# Perf
+ro.mtk_perf_fast_start_win=1
+ro.mtk_perf_response_time=1
+ro.mtk_perf_simple_start_win=1
+security.perf_harden=1
+
+# Power
+sys.ipo.disable=1
+sys.ipo.pwrdncap=2
+persist.sys.usic.support=true
+
+# Radio
+ro.vendor.mtk_omacp_support=1
+ro.vendor.mtk_telephony_add_on_policy=0
+persist.vendor.mdlog.flush_log_ratio=0
+persist.vendor.wfc.sys_wfc_support=1
+persist.vendor.vzw_device_type=0
+persist.vendor.pms_removable=1
+persist.vendor.tran_boottime=0
+persist.vendor.tran_sign_prj=0
+persist.vendor.tran_source_prj=0
+persist.vendor.tran_target_prj=0
+ro.kom_telephony_support=0
+
+# RIL
+vendor.rild.libargs=-d /dev/ttyC0
+vendor.rild.libpath=mtk-ril.so
+
+# SurfaceFlinger
+debug.sf.auto_latch_unsignaled=false
+debug.sf.early.app.duration=20000000
+debug.sf.early.sf.duration=27600000
+debug.sf.earlyGl.app.duration=20000000
+debug.sf.earlyGl.sf.duration=27600000
+debug.sf.enable_gl_backpressure=0
+debug.sf.enable_transaction_tracing=false
+debug.sf.hwc.min.duration=23000000
+debug.sf.latch_unsignaled=true
+debug.sf.late.app.duration=20000000
+debug.sf.late.sf.duration=27600000
+debug.sf.predict_hwc_composition_strategy=0
+debug.sf.use_phase_offsets_as_durations=1
+
+# USB
+ro.sys.usb.bicr=no
+ro.sys.usb.charging.only=yes
+ro.sys.usb.mtp.whql.enable=0
+ro.sys.usb.storage.type=mtp
+ro.usb.connect.keycodes=100,200
+
+# WiFi
+ro.mediatek.wlan.p2p=1
+ro.mediatek.wlan.wsc=1
+mediatek.wlan.ctia=0
+wifi.direct.interface=p2p0
+wifi.interface=wlan0
+wifi.tethering.interface=ap0
+
+# ZRAM
+ro.zram.mark_idle_delay_mins=60
+ro.zram.first_wb_delay_mins=1440
+ro.zram.periodic_wb_delay_hours=24
+
+# Zygote
+ro.zygote.preload.enable=0
+zygote.critical_window.minute=10
+
+# Zygisk Preforking
+persist.device_config.runtime_native.usap_pool_enabled=true

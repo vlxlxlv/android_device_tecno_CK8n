@@ -6,13 +6,26 @@ type sysfs_tran_cam_file, fs_type, sysfs_type;
 type transsion_camera_data_file, file_type, data_file_type, mlstrustedobject;
 type vendor_watermark_data_file, file_type, data_file_type, mlstrustedobject;
 
-# Display
-type sysfs_lcm_name_file, fs_type, sysfs_type;
+# Data
+type storage_dbg_data_file, file_type, core_data_file_type, data_file_type;
 
-# DT2W
+# Fingerprint
+type sysfs_fp_name_path, fs_type, sysfs_type;
+type vendor_gf_data_file, file_type, data_file_type;
+
+# Gesture
 type proc_gesture_function, fs_type, proc_type, sysfs_type;
-type proc_gesture_state, fs_type, proc_type, sysfs_type;
+type proc_main_gesture_function, fs_type, proc_type, sysfs_type;
+
+# OTG
+type sysfs_OTG_STATE_file, fs_type, sysfs_type;
 
 # Torch
 type sysfs_sub_torch_file, fs_type, sysfs_type;
 type sysfs_torch_file, fs_type, sysfs_type;
+
+# tran_auto_test
+type sysfs_tran_auto_test, fs_type, sysfs_type, mlstrustedobject;
+
+# tranlog
+type tranlogconfig_sys_file, fs_type, sysfs_type;
