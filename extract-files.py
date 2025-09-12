@@ -40,10 +40,11 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/bin/hw/android.hardware.media.c2@1.2-mediatek-64b': blob_fixup()
         .add_needed('libstagefright_foundation-v33.so')
         .replace_needed('libavservices_minijail_vendor.so', 'libavservices_minijail.so'),
-    ('vendor/bin/mnld', 'vendor/lib64/hw/android.hardware.sensors@2.X-subhal-mediatek.so', 'vendor/lib64/libaalservice.so', 'vendor/lib64/libcam.utils.sensorprovider.so'): blob_fixup()
+    ('vendor/bin/mnld', 'vendor/lib64/libaalservice.so', 'vendor/lib64/libcam.utils.sensorprovider.so'): blob_fixup()
         .add_needed('android.hardware.sensors@1.0-convert-shared.so'),
     'vendor/lib64/hw/audio.primary.mt6893.so': blob_fixup()
-        .add_needed('libstagefright_foundation-v33.so'),
+        .replace_needed('libutils.so', 'libutils-v31.so')
+        .replace_needed('libalsautils.so', 'libalsautils-v31.so'),
     'vendor/etc/init/android.hardware.neuralnetworks-shim-service-mtk.rc': blob_fixup()
         .regex_replace('start', 'enable'),
     'vendor/etc/init/init.thermal_core.rc': blob_fixup()
@@ -66,12 +67,17 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('AHardwareBuffer_unlock'),
     'vendor/bin/hw/mtkfusionrild': blob_fixup()
         .add_needed('libutils-v32.so'),
+    'vendor/lib64/hw/vendor.mediatek.hardware.camera.isphal@1.0-impl.so': blob_fixup()
+        .replace_needed('libhidlbase.so', 'libhidlbase-v31.so')
+        .replace_needed('libbinder.so', 'libbinder-v31.so')
+        .replace_needed('libutils.so', 'libutils-v31.so'),
     ('vendor/bin/hw/camerahalserver', 'vendor/bin/hw/vendor.mediatek.hardware.pq@2.2-service'): blob_fixup()
         .replace_needed('libhidlbase.so', 'libhidlbase-v31.so')
         .replace_needed('libbinder.so', 'libbinder-v31.so')
         .replace_needed('libutils.so', 'libutils-v31.so'),
     'vendor/lib64/hw/android.hardware.camera.provider@2.6-impl-mediatek.so': blob_fixup()
         .replace_needed('libhidlbase.so', 'libhidlbase-v31.so')
+        .replace_needed('libbinder.so', 'libbinder-v31.so')
         .replace_needed('libutils.so', 'libutils-v31.so')
         .add_needed('libcamera_metadata_shim.so'),
     ('vendor/lib64/lib3a.ae.stat.so', 'vendor/lib64/lib3a.flash.so', 'vendor/lib64/lib3a.sensors.color.so', 'vendor/lib64/lib3a.sensors.flicker.so'): blob_fixup()

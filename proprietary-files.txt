@@ -37,6 +37,7 @@ vendor/lib64/libMtkSpeechEnh.so
 vendor/lib64/libTransNS.so
 vendor/lib64/lib_iir.so
 vendor/lib64/lib_speech_enh.so
+vendor/lib64/libalsautils.so:vendor/lib64/libalsautils-v31.so;FIX_SONAME
 vendor/lib64/libaudio_param_parser-vnd.so
 vendor/lib64/libaudiocompensationfilter_vendor.so
 vendor/lib64/libaudiocompensationfilterc.so
@@ -1483,11 +1484,12 @@ vendor/firmware/valhall-1691526.wa
 vendor/firmware/wifi.cfg
 vendor/firmware/WIFI_RAM_CODE_soc3_0_1a_1.bin
 
-# Fuelgauge
+# Fuelgauged
 vendor/bin/fuelgauged
 vendor/bin/fuelgauged_nvram
 vendor/etc/init/fuelgauged_init.rc
 vendor/etc/init/fuelgauged_nvram_init.rc
+vendor/lib/libfgauge_gm30.so
 vendor/lib64/libfgauge_gm30.so
 
 # Gatekeeper
@@ -1579,8 +1581,14 @@ vendor/bin/mcDriverDaemon
 
 # Media (C2)
 vendor/bin/hw/android.hardware.media.c2@1.2-mediatek-64b
-vendor/bin/v3avpud
 vendor/etc/init/android.hardware.media.c2@1.2-mediatek.rc
+vendor/etc/seccomp_policy/android.hardware.media.c2@1.2-extended-seccomp-policy
+vendor/etc/seccomp_policy/android.hardware.media.c2@1.2-mediatek-seccomp-policy
+vendor/etc/seccomp_policy/mediacodec.policy
+vendor/etc/seccomp_policy/mediaextractor.policy
+vendor/etc/seccomp_policy/mediaswcodec.policy
+vendor/etc/mtk_platform_codecs_config.xml
+vendor/bin/v3avpud
 vendor/etc/init/v3avpud.rc
 vendor/etc/vintf/manifest/manifest_media_c2_V1_1_default.xml:vendor/etc/vintf/manifest/manifest_media_c2_V1_2_default.xml
 vendor/lib/AV1SecureVdecCA_510.so
@@ -1599,8 +1607,6 @@ vendor/lib/libcodec2_soft_mtk_msadpcmdec.so
 vendor/lib/libcodec2_vpp_qt_plugin.so
 vendor/lib/libcodec2_vpp_rs_plugin.so
 vendor/lib/libformatter.so
-vendor/lib/libgz_gp_client.so
-vendor/lib/libgz_uree.so
 vendor/lib/libh264dec_customize.so
 vendor/lib/libh264dec_sa.ca7.so
 vendor/lib/libh264dec_sd.ca7.so
@@ -1639,8 +1645,6 @@ vendor/lib64/libcodec2_soft_mtk_msadpcmdec.so
 vendor/lib64/libcodec2_vpp_qt_plugin.so
 vendor/lib64/libcodec2_vpp_rs_plugin.so
 vendor/lib64/libformatter.so
-vendor/lib64/libgz_gp_client.so
-vendor/lib64/libgz_uree.so
 vendor/lib64/libhevce_sb.ca7.android.so;DISABLE_CHECKELF
 vendor/lib64/libmp3dec_mtk.so
 vendor/lib64/libperfctl_vendor.so
@@ -1649,6 +1653,20 @@ vendor/lib64/libvcodec_oal.so;DISABLE_CHECKELF
 vendor/lib64/libvcodecdrv_header_stub.so
 vendor/lib64/libvpu.so
 vendor/lib64/libvpu5.so
+
+# Misc
+vendor/bin/mt6660_calibration
+vendor/bin/rt5512_calibration
+vendor/etc/init/init.otg.rc
+vendor/etc/trancam_filelock.json
+vendor/etc/wfd_source_capability.csv
+vendor/etc/x695FreeFiredModelLabel.txt
+vendor/lib64/libdynamiclog.so
+vendor/lib64/libhfmanagerwrapper.so
+vendor/lib64/libmmprofile.so
+vendor/lib64/libmtk_bsg.so
+vendor/lib64/libmvpu_config_data.so
+vendor/lib64/vendor.mediatek.hardware.mdmonitor@1.0.so
 
 # MMAGENT
 vendor/bin/hw/vendor.mediatek.hardware.mmagent@1.1-service
@@ -1852,8 +1870,12 @@ vendor/bin/hw/vendor.trustonic.tee@1.1-service
 vendor/etc/init/tee.rc
 vendor/etc/init/trustonic.rc
 vendor/etc/init/vendor.trustonic.tee@1.1-service.rc
+vendor/lib/libgz_gp_client.so
+vendor/lib/libgz_uree.so
 vendor/lib/libimsg_log.so
 vendor/lib64/libTEECommon.so
+vendor/lib64/libgz_gp_client.so
+vendor/lib64/libgz_uree.so
 vendor/lib64/libimsg_log.so
 vendor/lib64/vendor.trustonic.tee.tui@1.0.so
 vendor/lib64/vendor.trustonic.tee@1.0.so
