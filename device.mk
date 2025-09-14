@@ -232,20 +232,12 @@ PRODUCT_COPY_FILES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    FrameworksResOverlayX6739 \
-    PowerOffAlarmOverlayX6739 \
-    SettingsOverlayX6739 \
-    SettingsProviderOverlayX6739 \
-    SystemUIOverlayX6739 \
-    TelephonyOverlayX6739 \
-    TetheringResOverlayX6739 \
-    WifiResOverlayX6739
-
-PRODUCT_PACKAGES += \
-    LineageApertureOverlayX6739 \
-    LineageDialerOverlayX6739 \
-    LineageSDKOverlayX6739 \
-    LineageSettingsOverlayX6739
+    FrameworksResOverlayCK8n \
+    SettingsOverlayCK8n \
+    SettingsProviderOverlayCK8n \
+    SystemUIOverlayCK8n \
+    TetheringResOverlayCK8n \
+    WifiResOverlayCK8n
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -404,7 +396,7 @@ PRODUCT_PACKAGES += \
 VIBRATOR_SUPPORTS_EFFECTS := true
 
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.mediatek.x6739
+    android.hardware.vibrator-service.transsion
 
 # VNDK
 PRODUCT_PACKAGES += \
@@ -427,4 +419,4 @@ PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/infinix/X6739/X6739-vendor.mk)
+$(call inherit-product, vendor/tecno/CK8n/CK8n-vendor.mk)

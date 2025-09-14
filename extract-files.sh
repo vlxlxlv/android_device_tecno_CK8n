@@ -7,7 +7,7 @@
 
 set -e
 
-DEVICE=X6739
+DEVICE=CK8n
 VENDOR=infinix
 
 # Load extract_utils and do some sanity checks
