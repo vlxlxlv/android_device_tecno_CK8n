@@ -7,6 +7,9 @@
 DEVICE_PATH := device/tecno/CK8n
 KERNEL_PATH := device/tecno/CK8n-kernel
 
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
+
 # A/B
 AB_OTA_PARTITIONS += \
     system \
@@ -24,9 +27,24 @@ AB_OTA_PARTITIONS += \
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a-dotprod
 TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a76
 
+# Audio 
+BOARD_USES_ALSA_AUDIO := true
+
+# Enable 64-bit for non-zygote.
+ZYGOTE_FORCE_64 := true
+
+# Force any prefer32 targets to be compiled as 64 bit.
+IGNORE_PREFER32_ON_DEVICE := true
+
+# Include 64-bit mediaserver to support 64-bit only devices
+TARGET_DYNAMIC_64_32_MEDIASERVER := true
+
+# Include 64-bit drmserver to support 64-bit only devices
+TARGET_DYNAMIC_64_32_DRMSERVER := true
+
+# Build the 32 bit targets
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := armeabi-v7a
@@ -49,6 +67,9 @@ BOARD_RAMDISK_USE_LZ4 := true
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
+BOARD_KERNEL_CMDLINE += bootopt=64S3,32N2,64N2
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+
 # base and pagesize are usually ignored when BOARD_USES_GENERIC_KERNEL_IMAGE is true,
 # but our bootloader is fussy and cares about these offsets being set correctly.
 BOARD_MKBOOTIMG_ARGS := --base $(BOARD_KERNEL_BASE)
@@ -58,9 +79,6 @@ BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 bootconfig
-BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := TECNO-CK8n
@@ -107,9 +125,9 @@ BOARD_USES_METADATA_PARTITION := true
 # Partitions - Dynamic
 BOARD_SUPER_PARTITION_SIZE := 11378286592
 BOARD_SUPER_PARTITION_GROUPS := tecno_dynamic_partitions
-BOARD_INFINIX_DYNAMIC_PARTITIONS_SIZE := 11374092288 # (BOARD_SUPER_PARTITION_SIZE - 4MB)
+BOARD_TECNO_DYNAMIC_PARTITIONS_SIZE := 11374092288 # (BOARD_SUPER_PARTITION_SIZE - 4MB)
 
-BOARD_INFINIX_DYNAMIC_PARTITIONS_PARTITION_LIST := \
+BOARD_TECNO_DYNAMIC_PARTITIONS_PARTITION_LIST := \
 	system \
     system_ext \
     product \
@@ -140,6 +158,7 @@ BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
+
 # OTA assert
 TARGET_OTA_ASSERT_DEVICE := CK8n,TECNO-CK8n
 
@@ -149,10 +168,6 @@ VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 
 # SEPolicy
 include device/mediatek/sepolicy_vndr/SEPolicy.mk
-
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
-BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
 # Verified Boot
 BOARD_AVB_ENABLE := true

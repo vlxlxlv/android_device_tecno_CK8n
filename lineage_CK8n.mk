@@ -5,25 +5,28 @@
 #
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from CK8n device
 $(call inherit-product, device/tecno/CK8n/device.mk)
+-include vendor/extra/product.mk
+TARGET_SUPPORTS_OMX_SERVICE := false
+TARGET_DISABLE_EPPE := true
+PERF_ANIM_OVERRIDE := true
 
 # Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
+BOARD_VENDOR := TECNO
 PRODUCT_NAME := lineage_CK8n
 PRODUCT_DEVICE := CK8n
-PRODUCT_MANUFACTURER := INFINIX
-PRODUCT_BRAND := Infinix
-PRODUCT_MODEL := Infinix CK8n
+PRODUCT_MANUFACTURER := TECNO
+PRODUCT_BRAND := TECNO
+PRODUCT_MODEL := TECNO CK8n
 
 PRODUCT_GMS_CLIENTID_BASE := android-transsion
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildDesc="sys_tssi_64_armv82_tecno-user 14 UP1A.231005.007 722992 release-keys" \
-    BuildFingerprint=Infinix/CK8n-GL/Infinix-CK8n:14/UP1A.231005.007/241017V722:user/release-keys \
-    SystemDevice=Infinix-CK8n \
-    SystemName=CK8n-GL
+PRODUCT_SYSTEM_NAME := CK8n-GL
+PRODUCT_SYSTEM_DEVICE := CK8n
+    
+BUILD_FINGERPRINT := TECNO/CK8n-GL/TECNO-CK8n:14/UP1A.231005.007/250217V537:user/release-keys

@@ -1,2 +1,0 @@
-# /proc/bootconfig
-allow mnld proc_bootconfig:file r_file_perms;

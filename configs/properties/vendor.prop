@@ -4,19 +4,17 @@ ro.apk_verity.mode=2
 # Audio
 aaudio.mmap_exclusive_policy=2
 aaudio.mmap_policy=2
-ro.audio.monitorRotation=true
-ro.config.media_vol_default=13
-ro.vendor.mtk_audio_alac_support=1
-ro.vendor.mtk_audio_ape_support=1
-ro.vendor.mtk_audio_tuning_tool_ver=V2.2
-ro.vendor.mtk_besloudness_support=1
-ro.vendor.mtk_eccci_c2k=1
-ro.vendor.mtk_hifiaudio_support=1
-ro.vendor.tran.audiotimeout=true
-
 persist.vendor.audiohal.aurisys.pcm_dump_on=0
 persist.vendor.audiohal.p2w_dump_on=0
 persist.vendor.audiohal.pcm_mixer_dump_on=0
+persist.vendor.rm.debug.headsetmic=1
+persist.vendor.rm.debug.phonemic=1
+ro.audio.monitorRotation=true
+ro.config.vc_call_vol_steps=11
+ro.vendor.mtk_audio_alac_support=1
+ro.vendor.mtk_audio_ape_support=1
+ro.vendor.mtk_audio_tuning_tool_ver=V1
+ro.vendor.mtk_hifiaudio_support=1
 vendor.streamin.pcm.dump=0
 vendor.streamout.pcm.dump=0
 vendor.usbsph.dl.pcm.dump=0
@@ -154,21 +152,16 @@ ro.vendor.mtk_log_hide_gps=0
 debug.graphics.game_default_frame_rate.disabled=true
 ro.opengles.version=196610
 
-# IMS
-persist.vendor.ims_support=1
-persist.vendor.mtk.volte.enable=1
-persist.vendor.mtk_ct_volte_support=3
-persist.vendor.mtk_dynamic_ims_switch=1
-persist.vendor.vilte_support=1
-persist.vendor.viwifi_support=1
-persist.vendor.volte_support=1
-ro.telephony.iwlan_operation_mode=AP-assisted
-ro.vendor.md_auto_setup_ims=1
-ro.vendor.mtk_data_config=1
+# HWUI
+debug.hwui.target_cpu_time_percent=30
+debug.hwui.use_hint_manager=true
 
 # Keymaster
 ro.hardware.kmsetkey=trustonic
 ro.vendor.keymaster_version=4.1
+
+# Lights
+ro.vendor.transsion.backlight_12bit=1
 
 # LMKD
 ro.lmk.downgrade_pressure=30
@@ -177,12 +170,15 @@ ro.lmk.thrashing_limit_decay=50
 ro.lmk.use_minfree_levels=false
 ro.lmk.use_psi=true
 
+
 # Media
+debug.stagefright.c2inputsurface=-1
 media.c2.dmabuf.padding=3072
-ro.vendor.jpeg_decode_sw_opt=2
-ro.vendor.mtk_mvpu_security_support=0
+ro.vendor.jpeg_decode_sw_opt=1
+ro.vendor.mtk_config_max_dram_size=0x800000000
 ro.vendor.mtk_sec_video_path_support=1
 ro.vendor.mtk_video_hevc_enc_support=1
+vendor.media.omx=0
 vendor.mtk.vdec.waitkeyframeforplay=9
 
 # Neural Networks
@@ -191,6 +187,17 @@ ro.vendor.mtk_nn.option=A,B,E,F,Z
 ro.vendor.mtk_nn_baseline_support=1
 ro.vendor.mtk_nn_quant_preferred=1
 ro.vendor.mtk_nn_support=1
+
+# Power
+persist.vendor.iomanager.dirty=1
+persist.vendor.iomanager.switch=1
+persist.vendor.pnpmgr.enable=1
+persist.vendor.pnpmgr.gamemode.enable=1
+persist.vendor.pnpmgr.gamerecord.enable=1
+ro.vendor.perf.scroll_opt=true
+ro.vendor.powerhal.gsi_watermark=500
+ro.vendor.powerhal_fling_mode_support=1
+vendor.perf.framepacing.enable=1
 
 # Radio
 persist.radio.multisim.config=dsds
