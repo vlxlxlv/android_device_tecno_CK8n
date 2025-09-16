@@ -22,6 +22,11 @@
         <library name="loudness_enhancer" path="libldnhncr.so"/>
         <library name="dynamics_processing" path="libdynproc.so"/>
         <library name="pre_processing" path="libaudiopreprocessing.so"/>
+        <!-- DOLBY START -->
+        <library name="gamedap" path="libswgamedap.so"/>
+        <library name="vqe" path="libswvqe.so"/>
+        <library name="dap" path="libswdap.so"/>
+        <!-- DOLBY END -->
     </libraries>
 
     <!-- list of effects to load.

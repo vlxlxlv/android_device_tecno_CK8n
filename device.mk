@@ -133,9 +133,6 @@ PRODUCT_PACKAGES += \
     libutilscallstack.vendor \
     libion.vendor
 
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/display,$(TARGET_COPY_OUT_VENDOR)/etc)
-
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
@@ -154,7 +151,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3.vendor
+    android.hardware.biometrics.fingerprint@2.1.vendor
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -207,11 +204,20 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_PACKAGES += \
-    libcodec2_hidl@1.2.vendor \
+    android.hardware.media.c2@1.0.vendor:64 \
+    android.hardware.media.c2@1.1.vendor:64 \
+    android.hardware.media.c2@1.2.vendor:64 \
+    android.hardware.media.omx@1.0-service \
+    libcodec2_hidl@1.2.vendor:64 \
+    libcodec2_hidl_plugin:64 \
+    libcodec2_vndk.vendor:64 \
+    libeffects:64 \
+    libeffectsconfig.vendor:64 \
     libavservices_minijail_vendor \
     libstagefright_softomx_plugin.vendor \
     libsfplugin_ccodec_utils.vendor \
-    libcodec2_soft_common.vendor
+    libcodec2_soft_common.vendor \
+    libflatbuffers-cpp.vendor
 
 PRODUCT_PACKAGES += \
     libstagefright_foundation-v33
@@ -417,8 +423,6 @@ PRODUCT_PACKAGES += \
     android.hardware.usb.gadget-service.mediatek
 
 # Vibrator
-VIBRATOR_SUPPORTS_EFFECTS := true
-
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.mediatek
 

@@ -187,6 +187,7 @@ vendor/bin/jpegtool
 vendor/bin/lib3a.ccu.ddr
 vendor/bin/lib3a.ccu.dm
 vendor/bin/lib3a.ccu.pm
+vendor/bin/rttv
 vendor/etc/anc_siq/cache_s5kgd2sp_17201766_front_d1300
 vendor/etc/anc_siq/cache_s5kgwbsw_17201839_back_d1300
 vendor/etc/anc_siq/dgain_mask_s5kgd2sp_17201766_front_d1300.bin
@@ -199,7 +200,9 @@ vendor/etc/init/camerahalserver.rc
 vendor/etc/init/vendor.transsion.hardware.trancam.trancamserver@1.0-service.rc
 vendor/etc/vintf/manifest/vendor.transsion.hardware.trancam.trancamserver@1.0.xml
 vendor/etc/cam3atms_profiles.xml
+vendor/etc/nhw
 vendor/etc/tran_camprofiles.xml
+vendor/etc/trancam_filelock.json
 vendor/lib64/hw/android.hardware.camera.provider@2.6-impl-mediatek.so
 vendor/lib64/hw/vendor.mediatek.hardware.camera.atms@1.0-impl.so
 vendor/lib64/hw/vendor.mediatek.hardware.camera.bgservice@1.1-impl.so
@@ -1365,6 +1368,10 @@ vendor/bin/hw/android.hardware.graphics.allocator@4.0-service-mediatek
 vendor/bin/hw/vendor.mediatek.hardware.pq@2.2-service
 vendor/etc/init/android.hardware.graphics.allocator@4.0-service-mediatek.rc
 vendor/etc/init/vendor.mediatek.hardware.pq@2.2-service.rc
+vendor/etc/AbnormalDisplayLog_dynamic.xml
+vendor/etc/VideoLog_dynamic.xml
+vendor/etc/cust_color.xml
+vendor/etc/cust_silky_brightness.xml
 vendor/lib/egl/egl.cfg
 vendor/lib/mt6893/libmtk_drvb.so;SYMLINK=vendor/lib/libmtk_drvb.so
 vendor/lib/libion_mtk.so
@@ -1445,18 +1452,15 @@ vendor/etc/init/android.hardware.drm@1.4-service.widevine.rc
 vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.4-service.widevine.xml
 vendor/lib64/libwvhidl.so
 
-# Fingerprint (Common)
+# Fingerprint
+vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service-mediatek
+vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-mediatek.rc
 vendor/etc/init/vendor.goodix.rc
-vendor/etc/vintf/manifest/manifest.xml
+vendor/etc/vintf/manifest/android.hardware.biometrics.fingerprint@2.1-service-mediatek.xml
+vendor/lib64/hw/gf_fingerprint.default.so;FIX_SONAME
 vendor/lib64/libgf_hal.so
 vendor/lib64/libvendor.goodix.hardware.biometrics.fingerprint@2.1.so
 vendor/lib64/vendor.mediatek.hardware.biometrics.fingerprint@2.1.so
-
-# Fingerprint - from rafifinjerprinttttt
-vendor/bin/hw/android.hardware.biometrics.fingerprint@2.3-service.transsion|6abfd70ff35a187f0b450184276e472a9019292c
-vendor/etc/init/android.hardware.biometrics.fingerprint@2.3-service.transsion.rc|21b317910a10eff349fed6262c753a0be65dfbcc
--vendor/etc/vintf/manifest/android.hardware.biometrics.fingerprint@2.3-service.transsion.xml|75cbb1f959fb56709ff757549d89e495588744e1
-vendor/lib64/hw/gf_fingerprint.default.so;FIX_SONAME|3fc853bf58aa006e69931e9afb1e407b11aa9674|3fc853bf58aa006e69931e9afb1e407b11aa9674
 
 # Firmware
 vendor/firmware/aw87xxx_acf.bin
@@ -1676,7 +1680,6 @@ vendor/lib64/vendor.mediatek.hardware.mms@1.5.so
 vendor/lib64/vendor.mediatek.hardware.mms@1.6.so
 
 # Misc
-vendor/etc/trancam_filelock.json
 vendor/lib64/libdynamiclog.so
 vendor/lib64/libhfmanagerwrapper.so
 vendor/lib64/libmmprofile.so
