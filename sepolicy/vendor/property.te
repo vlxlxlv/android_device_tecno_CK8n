@@ -1,0 +1,5 @@
+# Audio
+vendor_public_prop(vendor_audioserver_prop)
+
+# HWC
+vendor_public_prop(vendor_hwc_prop)
