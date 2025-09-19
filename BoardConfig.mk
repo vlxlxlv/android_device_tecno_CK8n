@@ -68,7 +68,6 @@ BOARD_USES_GENERIC_KERNEL_IMAGE := true
 BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
 BOARD_KERNEL_CMDLINE += bootopt=64S3,32N2,64N2
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 # base and pagesize are usually ignored when BOARD_USES_GENERIC_KERNEL_IMAGE is true,
 # but our bootloader is fussy and cares about these offsets being set correctly.
