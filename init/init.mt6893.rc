@@ -17,17 +17,13 @@ on early-init
     setprop vendor.all.modules.ready 1
 
 on init
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-
-    # if primary storage is physical, set ro.vold.primary_physical to 1
-    # setprop ro.vold.primary_physical 1
-
-    mkdir /mnt/cd-rom 0000 system system
-
-#BSP:add XLLSHLSSP-17 for tranfs by shentao.yang 20190603 start
     mkdir /tranfs 0771 system system
-#BSP:add XLLSHLSSP-17 for tranfs by shentao.yang 20190603 end
+
+   # Setup runtime blkio
+    write /dev/blkio/blkio.weight 1000
+    write /dev/blkio/background/blkio.weight 200
+    write /dev/blkio/blkio.group_idle 2000
+    write /dev/blkio/background/blkio.group_idle 0
 
 # change lk_env permission
     chown root system /proc/lk_env
@@ -41,7 +37,32 @@ on init
     chown system system /proc/gesture_function
     chmod 0660 /proc/gesture_function
 
-# mount different fs start
+on property:init.svc.vendor.charger=running
+    chmod 0660 /dev/spm
+    chown system system /dev/spm
+    chmod 0666 /dev/kmsg
+    chmod 0775 /mnt/vendor
+    mkdir /mnt/vendor/nvcfg
+    mount ext4 /dev/block/by-name/nvcfg /mnt/vendor/nvcfg rw wait
+    chown system system /mnt/vendor/nvcfg
+    chmod 0771 /mnt/vendor/nvcfg
+    restorecon_recursive /mnt/vendor/nvcfg
+    write /sys/devices/platform/battery_meter/FG_daemon_log_level 7
+    write /sys/bus/platform/devices/battery/FG_daemon_log_level 7
+    # Permissions for System Server and daemons.
+    chown system system /sys/power/autosleep
+    chown system system /sys/power/state
+    chown system system /sys/power/wakeup_count
+    chown radio wakelock /sys/power/wake_lock
+    chown radio wakelock /sys/power/wake_unlock
+    chmod 0660 /sys/power/state
+    chmod 0660 /sys/power/wake_lock
+    chmod 0660 /sys/power/wake_unlock
+    chmod 0660 /sys/power/wakeup_count
+    write /sys/power/pm_freeze_timeout 2000
+
+    start fuelgauged
+    start fuelgauged_nvram
 
 on charger
     write /proc/perfmgr/boost_ctrl/cpu_ctrl/boot_freq "-1 -1 -1 -1 -1 -1"
@@ -1006,3 +1027,12 @@ service osi /system/bin/osi
     disabled
     oneshot
     #seclabel u:r:osi:s0
+
+# MTK fast charging support
+on property:persist.vendor.mediatek.fast_charging.support=*
+    write /sys/devices/platform/charger/fast_chg_indicator ${persist.vendor.mediatek.fast_charging.support}
+
+on property:sys.boot_completed=1
+# Report max frequency to unity and miHoYo (HoYoverse) games tasks
+    write /proc/sys/kernel/sched_lib_name "com.miHoYo.,com.HoYoverse.,UnityMain,libunity.so"
+    write /proc/sys/kernel/sched_lib_mask_force 255

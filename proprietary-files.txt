@@ -1680,8 +1680,10 @@ vendor/lib64/vendor.mediatek.hardware.mms@1.5.so
 vendor/lib64/vendor.mediatek.hardware.mms@1.6.so
 
 # Misc
+vendor/lib/libimsg_log.so
 vendor/lib64/libdynamiclog.so
 vendor/lib64/libhfmanagerwrapper.so
+vendor/lib64/libimsg_log.so
 vendor/lib64/libmmprofile.so
 vendor/lib64/libmtk_bsg.so
 vendor/lib64/vendor.mediatek.hardware.mdmonitor@1.0.so
@@ -1843,10 +1845,20 @@ vendor/lib64/vendor.mediatek.hardware.lbs@1.0.so
 vendor/lib64/vendor.mediatek.hardware.mtkradioex@3.0.so
 
 # Radio (IMS)
+vendor/bin/hw/vtservice_hidl
+vendor/bin/rcs_volte_stack
+vendor/bin/volte_clientapi_ua
+vendor/bin/volte_rcs_ua
+vendor/etc/init/init.vtservice_hidl.rc
+vendor/etc/init/volte_clientapi_ua.rc
+vendor/lib/hw/vendor.mediatek.hardware.videotelephony@1.0-impl.so
 vendor/lib/libipsec_ims_shr.so
+vendor/lib/libvt_custom.so
 vendor/lib/vendor.mediatek.hardware.rcs@2.0.so
 vendor/lib/vendor.mediatek.hardware.videotelephony@1.0.so;MODULE_SUFFIX=_vendor
+vendor/lib64/hw/vendor.mediatek.hardware.videotelephony@1.0-impl.so
 vendor/lib64/libipsec_ims_shr.so
+vendor/lib64/vendor.mediatek.hardware.clientapi@1.0.so
 vendor/lib64/vendor.mediatek.hardware.videotelephony@1.0.so;MODULE_SUFFIX=_vendor
 
 # Radio (MTK-IMS)
@@ -1931,7 +1943,6 @@ vendor/bin/thermal_intf
 vendor/bin/thermal_manager
 vendor/bin/thermalloadalgod
 vendor/etc/.tp/.ht120.mtc
-vendor/etc/.tp/.thermal_policy_02
 vendor/etc/.tp/.thermal_policy_03
 vendor/etc/.tp/.thermal_policy_08
 vendor/etc/.tp/.thermal_policy_09
@@ -1941,7 +1952,6 @@ vendor/etc/init/init.thermal.rc
 vendor/etc/init/init.thermal_core.rc
 vendor/etc/init/init.thermal_manager.rc
 vendor/etc/init/init.thermalloadalgod.rc
-vendor/etc/mpe.conf
 vendor/lib/libmtcloader.so
 vendor/lib/libthermalalgo.so
 vendor/lib64/libmtcloader.so

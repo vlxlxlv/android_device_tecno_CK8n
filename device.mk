@@ -173,7 +173,8 @@ PRODUCT_PACKAGES += \
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health-service.mediatek \
-    android.hardware.health-service.mediatek-recovery
+    android.hardware.health-service.mediatek-recovery \
+    charger_res_images_vendor
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -432,6 +433,9 @@ PRODUCT_PACKAGES += \
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.mediatek
+
+# ViPER4Android
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
 
 # VNDK
 PRODUCT_PACKAGES += \

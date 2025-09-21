@@ -11,7 +11,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from CK8n device
 $(call inherit-product, device/tecno/CK8n/device.mk)
 -include vendor/extra/product.mk
-TARGET_SUPPORTS_OMX_SERVICE := false
 TARGET_DISABLE_EPPE := true
 PERF_ANIM_OVERRIDE := true
 
