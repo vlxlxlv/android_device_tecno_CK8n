@@ -81,9 +81,19 @@ vendor.camera.mdp.cz.enable=1
 vendor.camera.mdp.dre.enable=1
 vendor.mtk.camera.app.fd.video=1
 
+# Crypto
+ro.crypto.volume.filenames_mode=aes-256-cts
+
 # Display
+debug.cpurend.vsync=false
+debug.hwui.skia_tracing_enabled=false
+debug.hwui.skia_use_perfetto_track_events=false
+graphics.gpu.profiler.support=true
+ro.vendor.build.dont_use_vabc=true
+ro.vendor.mtk_svp_on_mtee_support=2
 debug.mediatek.appgamepq_compress=1
-debug.mediatek.disp_decompress=1ro.vendor.sdr2hdr.by.layer.support=true
+debug.mediatek.disp_decompress=1
+ro.vendor.sdr2hdr.by.layer.support=true
 persist.vendor.sys.mtkaal.function=0
 ro.hardware.egl=meow
 ro.hardware.hwcomposer=mtk_common
@@ -189,15 +199,18 @@ ro.lmk.thrashing_limit_decay=50
 ro.lmk.use_minfree_levels=false
 ro.lmk.use_psi=true
 
-
 # Media
 debug.stagefright.c2inputsurface=-1
 media.c2.dmabuf.padding=3072
-ro.vendor.jpeg_decode_sw_opt=1
-ro.vendor.mtk_config_max_dram_size=0x800000000
+media.stagefright.thumbnail.prefer_hw_codecs=true
+ro.vendor.iomanager.support=1
+ro.vendor.mtk.c2.vdec.fmt.support.level=1
 ro.vendor.mtk_sec_video_path_support=1
 ro.vendor.mtk_video_hevc_enc_support=1
+vendor.media.heif.feature.off=1
+vendor.media.heif.highThreshold=20
 vendor.mtk.vdec.waitkeyframeforplay=9
+ro.vendor.jpeg_decode_sw_opt=1
 
 # Neural Networks
 debug.mtk_tflite.target_nnapi=29
@@ -216,6 +229,11 @@ ro.vendor.perf.scroll_opt=true
 ro.vendor.powerhal.gsi_watermark=500
 ro.vendor.powerhal_fling_mode_support=1
 vendor.perf.framepacing.enable=1
+
+# Power
+vendor.powerhal.interaction.offset=0
+vendor.powerhal.interaction.min=50
+vendor.powerhal.interaction.max=150
 
 # Radio
 persist.radio.multisim.config=dsds
@@ -278,25 +296,29 @@ ro.vendor.mtk.sensor.support=yes
 
 # SOC
 ro.soc.manufacturer=Mediatek
+ro.soc.model=MT6893
 
 # SurfaceFlinger
-debug.sf.auto_latch_unsignaled=0
-debug.sf.disable_backpressure=1
+debug.hwui.skia_atrace_enabled=false
 debug.sf.disable_client_composition_cache=1
-debug.sf.early.app.duration=10000000
-debug.sf.early.sf.duration=13800000
-debug.sf.earlyGl.app.duration=13800000
-debug.sf.earlyGl.sf.duration=13800000
 debug.sf.enable_gl_backpressure=0
+debug.sf.auto_latch_unsignaled=0
+debug.sf.early.app.duration=16600000
+debug.sf.early.sf.duration=16600000
+debug.sf.earlyGl.app.duration=16600000
+debug.sf.earlyGl.sf.duration=16600000
 debug.sf.enable_hwc_vds=0
-debug.sf.frame_rate_multiple_threshold=120
-debug.sf.hwc.min.duration=8500000
-debug.sf.latch_unsignaled=1
-debug.sf.late.app.duration=10000000
-debug.sf.late.sf.duration=13800000
+debug.sf.enable_transaction_tracing=false
+debug.sf.hwc.min.duration=18500000
+debug.sf.late.app.duration=16600000
+debug.sf.late.sf.duration=10500000
+debug.sf.phase_offset_threshold_for_next_vsync_ns=6100000
 debug.sf.predict_hwc_composition_strategy=0
-debug.sf.treat_170m_as_sRGB=1
 debug.sf.use_phase_offsets_as_durations=1
+debug.sf.treat_170m_as_sRGB=1
+ro.surface_flinger.has_HDR_display=true
+ro.surface_flinger.use_color_management=true
+ro.surface_flinger.wcg_composition_dataspace=143261696
 ro.surface_flinger.enable_frame_rate_override=false
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
 ro.surface_flinger.has_wide_color_display=true
@@ -305,16 +327,33 @@ ro.surface_flinger.primary_display_orientation=ORIENTATION_0
 ro.surface_flinger.protected_contents=true
 ro.surface_flinger.use_content_detection_for_refresh_rate=true
 ro.surface_flinger.display_update_imminent_timeout_ms=50
+ro.surface_flinger.set_idle_timer_ms=3000
+ro.surface_flinger.set_touch_timer_ms=500
 service.sf.prime_shader_cache=0
 persist.sys.sf.color_mode=9
 persist.sys.sf.color_saturation=1.0
 persist.sys.sf.native_mode=2
-ro.surface_flinger.set_idle_timer_ms=3000
-ro.surface_flinger.set_touch_timer_ms=500
-ro.surface_flinger.has_HDR_display=true
-ro.surface_flinger.has_wide_color_display=true
-ro.surface_flinger.use_color_management=true
-ro.surface_flinger.wcg_composition_dataspace=143261696
+vendor.debug.sf.cpupolicy=0
+vendor.debug.sf.cpupolicy.base_min_bl=310
+vendor.debug.sf.cpupolicy.hw_comp_suspend=1
+vendor.debug.sf.cpupolicy.hw_hfr_suspend=1
+vendor.debug.sf.cpupolicy.lowbound_uclamp_min=165
+vendor.debug.sf.cpupolicy.max_correct_offset=150
+vendor.debug.sf.cpupolicy.min_120=165
+vendor.debug.sf.cpupolicy.min_30_mml=165
+vendor.debug.sf.cpupolicy.min_60=130
+vendor.debug.sf.cpupolicy.min_60_mml=165
+vendor.debug.sf.cpupolicy.min_90=165
+vendor.debug.sf.cpupolicy.min_boost=165
+vendor.debug.sf.cpupolicy.power_down_120=300000
+vendor.debug.sf.cpupolicy.power_up_120=-300000
+vendor.debug.sf.cpupolicy.re_hfr=0
+vendor.debug.sf.cpupolicy.rt_bl_min=300
+vendor.debug.sf.cpupolicy.sf_cpu_thres=290
+vendor.debug.sf.cpupolicy.upbound_uclamp_max_ll=262
+vendor.debug.sf.cpupolicy.upbound_uclamp_min=350
+vendor.debug.sf.cpupolicy.upbound_uclamp_ret_sys=210
+vendor.debug.sf.cpupolicy.xgf_min=25
 
 # TEE
 ro.mtk_key_manager_support=1
@@ -329,6 +368,9 @@ ro.vendor.wifi.sap.concurrent.iface=ap1
 ro.vendor.wifi.sap.interface=ap0
 ro.vendor.wlan.chrdev=wmt_chrdev_wifi
 ro.vendor.wlan.gen=gen4m
+
+# WiFi Display
+ro.vendor.mtk_wfd_support=1
 
 # Zygote
 zygote.critical_window.minute=10

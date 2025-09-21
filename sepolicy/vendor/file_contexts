@@ -11,6 +11,23 @@
 # Fingerprint
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service-mediatek                                 u:object_r:hal_fingerprint_default_exec:s0
 
+# Health
+/sys/devices/platform/11015000.i2c9/i2c-9/9-0055/power_supply/battery(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/11019000.i2c9/i2c-9/9-0055/power_supply/battery(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/11280000.i2c10/i2c-10/10-0055/power_supply/battery(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/1000d000.pwrap/1000d000.pwrap:mt6358-pmic/mt6358-gauge/power_supply/battery(/.*)?                 u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/1000d000.pwrap/1000d000.pwrap:mt6358-pmic/mt6358-gauge/power_supply/mtk-gauge(/.*)?               u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/11016000.i2c/i2c-5/5-006b/power_supply/charger(/.*)?                                              u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/10026000.pwrap/10026000.pwrap:mt6359p/mt6359p-gauge/power_supply/battery(/.*)?                       u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/10026000.pwrap/10026000.pwrap:mt6359p/mt6359p-gauge/power_supply/mtk-gauge(/.*)?             u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/11016000.i2c/i2c-5/5-0053/power_supply/charger(/.*)?                                              u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/soc/10026000.pwrap/10026000.pwrap:mt6366/mt6358-gauge/power_supply/battery(/.*)?                     u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/soc/10026000.pwrap/10026000.pwrap:mt6366/mt6358-gauge/power_supply/mtk-gauge(/.*)?           u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/soc/11f00000.i2c/i2c-5/5-0034/mt6360_chg.2.auto/power_supply/charger(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/soc/11017000.i2c/i2c-5/5-0053/power_supply/charger(/.*)?                    u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/soc/11017000.i2c/i2c-5/5-006b/power_supply/charger(/.*)?                    u:object_r:sysfs_batteryinfo:s0
+/sys/devices/platform/soc/1101a000.i2c/i2c-6/6-006b/power_supply/charger(/.*)?                    u:object_r:sysfs_batteryinfo:s0
+
 # kmsetkey
 /(vendor|system\/vendor)/bin/kmsetkey_ca.trustonic                                                              u:object_r:trustonic_kmsetkey_ca_exec:s0
 
