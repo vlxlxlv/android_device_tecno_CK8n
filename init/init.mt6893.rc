@@ -82,8 +82,6 @@ on fs
     #BSP:add mtk patchs  CKJNHJ-4545 by zhenglong.hong 20230420 end
 
 on late-fs
-    wait_for_prop hwservicemanager.ready "true"
-
     mount_all --late
 
 on post-fs
