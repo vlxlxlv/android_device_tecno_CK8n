@@ -1385,7 +1385,6 @@ vendor/lib64/egl/libMEOW_trace.so
 vendor/lib64/hw/mt6893/android.hardware.graphics.allocator@4.0-impl-mediatek.so;SYMLINK=vendor/lib64/hw/android.hardware.graphics.allocator@4.0-impl-mediatek.so
 vendor/lib64/hw/mt6893/android.hardware.graphics.mapper@4.0-impl-mediatek.so;SYMLINK=vendor/lib64/hw/android.hardware.graphics.mapper@4.0-impl-mediatek.so
 vendor/lib64/hw/mt6893/vulkan.mali.so;SYMLINK=vendor/lib64/hw/vulkan.mali.so
-vendor/lib64/hw/hwcomposer.mt6893.so
 vendor/lib64/hw/vendor.mediatek.hardware.pq@2.15-impl.so
 vendor/lib64/mt6893/arm.graphics-V1-ndk_platform.so;SYMLINK=vendor/lib64/arm.graphics-V1-ndk_platform.so
 vendor/lib64/mt6893/arm.graphics-ndk_platform.so;SYMLINK=vendor/lib64/arm.graphics-ndk_platform.so
@@ -1440,6 +1439,9 @@ vendor/lib64/vendor.mediatek.hardware.pq@2.7.so
 vendor/lib64/vendor.mediatek.hardware.pq@2.8.so
 vendor/lib64/vendor.mediatek.hardware.pq@2.9.so
 
+# Display (hwcomposer) - Patched
+vendor/lib64/hw/hwcomposer.mt6893.so|31d746419461e86b6125b9401db2043149c5e5a4|6e98ea8a620c70728bbcd229d7d5071b66ef4d4f
+
 # DRM
 vendor/lib64/mediadrm/libwvdrmengine.so
 vendor/lib64/liboemcrypto.so
@@ -1460,7 +1462,11 @@ vendor/etc/vintf/manifest/android.hardware.biometrics.fingerprint@2.1-service-me
 vendor/lib64/hw/gf_fingerprint.default.so;FIX_SONAME
 vendor/lib64/libgf_hal.so
 vendor/lib64/libvendor.goodix.hardware.biometrics.fingerprint@2.1.so
-vendor/lib64/vendor.mediatek.hardware.biometrics.fingerprint@2.1.so
+
+# Fingerprint (For Trigger FOD) - from Irawan ROM's
+vendor/bin/hw/android.hardware.biometrics.fingerprint@2.3-service.transsion|6abfd70ff35a187f0b450184276e472a9019292c
+vendor/etc/init/android.hardware.biometrics.fingerprint@2.3-service.transsion.rc|21b317910a10eff349fed6262c753a0be65dfbcc
+vendor/lib64/vendor.mediatek.hardware.biometrics.fingerprint@2.1.so|8b4a1af8018aa4c625a7829d3ffcbdc0ccf85f57
 
 # Firmware
 vendor/firmware/aw87xxx_acf.bin

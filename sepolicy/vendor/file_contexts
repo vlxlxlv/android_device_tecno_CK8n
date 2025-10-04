@@ -9,7 +9,10 @@
 /sys/devices/platform/odm/odm:tran_auto_test/power_supply/tran-auto-test(/.*)                                   u:object_r:sysfs_tran_auto_test:s0
 
 # Fingerprint
-/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service-mediatek                                 u:object_r:hal_fingerprint_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service-mediatek     u:object_r:hal_fingerprint_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service.transsion    u:object_r:hal_fingerprint_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service.MT6893    u:object_r:hal_fingerprint_default_exec:s0
+/sys/kernel/tran_fp(/.*)?                                                                           u:object_r:sysfs_fp_name_path:s0
 
 # Health
 /sys/devices/platform/11015000.i2c9/i2c-9/9-0055/power_supply/battery(/.*)?  u:object_r:sysfs_batteryinfo:s0

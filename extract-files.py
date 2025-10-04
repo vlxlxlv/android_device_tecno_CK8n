@@ -61,7 +61,6 @@ blob_fixups: blob_fixups_user_type = {
     ('vendor/bin/hw/android.hardware.neuralnetworks@1.3-service-mtk-neuron', 'vendor/bin/nfcstackp-vendor', 'vendor/lib64/libnvram.so', 'vendor/lib64/libsysenv.so', 'vendor/lib64/libtflite_mtk.so'): blob_fixup()
         .add_needed('libbase_shim.so'),
     'vendor/lib64/hw/hwcomposer.mt6893.so': blob_fixup()
-        .patchelf_version('0_17_2')
         .add_needed('libprocessgroup_shim.so'),
     ('vendor/lib64/libtranssion_bodybeauty.so', 'vendor/lib64/mt6789/libeffect_hal.so', 'vendor/lib64/libsegmentionPre.so', 'vendor/lib64/libMegviiHum.so'): blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')

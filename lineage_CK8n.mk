@@ -10,9 +10,24 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from CK8n device
 $(call inherit-product, device/tecno/CK8n/device.mk)
--include vendor/extra/product.mk
 TARGET_DISABLE_EPPE := true
 PERF_ANIM_OVERRIDE := true
+
+# Define rear camera specs (multiple sensors supported)
+AXION_CAMERA_REAR_INFO := 64,2,2 # Example: 50MP + 48MP
+
+# Define front camera specs
+AXION_CAMERA_FRONT_INFO := 32 # Example: 42MP
+
+# Maintainer name (use "_" for spaces, e.g., "rmp_22" → "rmp 22" in UI)
+AXION_MAINTAINER := fjrXTR
+
+# Processor name (use "_" for spaces)
+AXION_PROCESSOR := MediaTek_Dimensity_8050
+
+# Misc
+TARGET_ENABLE_BLUR := true
+TARGET_INCLUDES_LOS_PREBUILTS := true
 
 # Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
