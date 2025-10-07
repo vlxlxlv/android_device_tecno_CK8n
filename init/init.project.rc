@@ -98,19 +98,6 @@ on boot
     setprop sys.usb.controller "11201000.usb0"
     setprop vendor.usb.controller "11201000.usb0"
 
-# start mmstat
 on property:sys.boot_completed=1
-    mkdir /sys/kernel/tracing/instances/mmstat 711
-    write /sys/kernel/tracing/instances/mmstat/tracing_on 0
-    write /sys/kernel/tracing/instances/mmstat/buffer_size_kb 16
-    write /sys/kernel/tracing/instances/mmstat/events/mmstat/enable 1
-    write /sys/kernel/tracing/instances/mmstat/tracing_on 1
-
-	#widevine driver node
     chmod 0660 /dev/drm_wv
     chown media system /dev/drm_wv
-
-#SPD: modify cpuctl cpu.shares by yifei.liu at 20240327 start
-    write /dev/cpuctl/top-app/cpu.shares 5120
-    write /dev/cpuctl/foreground/cpu.shares 4196
-#SPD: modify cpuctl cpu.shares by yifei.liu at 20240327 end
