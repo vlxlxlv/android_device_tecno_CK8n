@@ -1,2 +1,2 @@
 # /proc/bootconfig
-allow mnld proc_bootconfig:file r_file_perms;
+allow mnld proc_bootconfig:file { read open getattr r_file_perms };

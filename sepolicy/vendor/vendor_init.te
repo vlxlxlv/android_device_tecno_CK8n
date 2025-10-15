@@ -1,3 +1,8 @@
 rw_dir_file(vendor_init, sysfs_leds)
 
+allow vendor_init cgroup:file rw_file_perms;
+allow vendor_init proc:file write;
+allow vendor_init proc_watermark_boost_factor:file w_file_perms;
+
+set_prop(vendor_init, vendor_mtk_camera_prop)
 set_prop(vendor_init, exported_default_prop)
