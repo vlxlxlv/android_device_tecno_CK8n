@@ -13,6 +13,9 @@ allow mtk_hal_camera sysfs_tran_cam_file:file rw_file_perms;
 allow mtk_hal_camera sysfs_sub_torch_file:file rw_file_perms;
 allow mtk_hal_camera sysfs_torch_file:file rw_file_perms;
 
+allow mtk_hal_camera sysfs_dt_firmware_android:dir search;
+allow mtk_hal_camera sysfs_dt_firmware_android:file r_file_perms;
+allow mtk_hal_camera property_socket:sock_file write;
 allow mtk_hal_camera hal_trancamserver_hwservice:hwservice_manager find;
 binder_call(mtk_hal_camera, trancamserver)
 
