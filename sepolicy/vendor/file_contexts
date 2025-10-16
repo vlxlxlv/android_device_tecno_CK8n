@@ -7,7 +7,6 @@
 # Charger
 /sys/devices/platform/charger/tran_battery_cycle                                                                u:object_r:sysfs_bat_cycle:s0
 /sys/devices/platform/odm/odm:tran_auto_test/power_supply/tran-auto-test(/.*)                                   u:object_r:sysfs_tran_auto_test:s0
-/sys/devices/platform/odm/odm:tran_auto_test(/.*)?    u:object_r:sysfs_tran_auto_test:s0
 
 # Fingerprint
 
