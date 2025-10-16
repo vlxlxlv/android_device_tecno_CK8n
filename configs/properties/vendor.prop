@@ -297,7 +297,7 @@ ro.vendor.mtk.sensor.support=yes
 
 # SOC
 ro.soc.manufacturer=Mediatek
-ro.soc.model=MT6893
+ro.soc.model=MT6893Z_T/CZA
 
 # SurfaceFlinger
 debug.hwui.skia_atrace_enabled=false
