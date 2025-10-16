@@ -1439,8 +1439,8 @@ vendor/lib64/vendor.mediatek.hardware.pq@2.7.so
 vendor/lib64/vendor.mediatek.hardware.pq@2.8.so
 vendor/lib64/vendor.mediatek.hardware.pq@2.9.so
 
-# Display (hwcomposer) - Patched
-vendor/lib64/hw/hwcomposer.mt6893.so|31d746419461e86b6125b9401db2043149c5e5a4|6e98ea8a620c70728bbcd229d7d5071b66ef4d4f
+# Display (HWC)
+vendor/lib64/hw/hwcomposer.mt6893.so|677d457be7bc06171ec2e757309887378f226dfa|64a7bfbfcc4aaa16ae382c1a8bf6089909604a78
 
 # DRM
 vendor/lib64/mediadrm/libwvdrmengine.so
@@ -1455,18 +1455,20 @@ vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.4-service.widevine.xml
 vendor/lib64/libwvhidl.so
 
 # Fingerprint
-vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service-mediatek
-vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-mediatek.rc
-vendor/etc/init/vendor.goodix.rc
-vendor/etc/vintf/manifest/android.hardware.biometrics.fingerprint@2.1-service-mediatek.xml
-vendor/lib64/hw/gf_fingerprint.default.so;FIX_SONAME
-vendor/lib64/libgf_hal.so
-vendor/lib64/libvendor.goodix.hardware.biometrics.fingerprint@2.1.so
+vendor/etc/vintf/manifest/manifest.xml|a04f9d93e5c6f02a6bdc3b093d8f8d426bd88d5c
+vendor/etc/init/vendor.goodix.rc|0dca9347309dc4ff0b57fd6a14b7e41d45130984
+vendor/lib64/libgf_hal.so|07376e40a7ce761634871fdbc1e2c05696e0382f
+vendor/lib64/libvendor.goodix.hardware.biometrics.fingerprint@2.1.so|391c9727dbdadfe83682dfc6f989b7e9e862392f
+vendor/lib64/vendor.mediatek.hardware.biometrics.fingerprint@2.1.so|9b2e1682b07d50326a2ca39a73f0f79516cc0d61
 
-# Fingerprint (For Trigger FOD) - from Irawan ROM's
+# Fingerprint (FOD Trigger)
+vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service-mediatek|089a7fcc6e36aefddc04e9d0beaefe36e5905b2f
 vendor/bin/hw/android.hardware.biometrics.fingerprint@2.3-service.transsion|6abfd70ff35a187f0b450184276e472a9019292c
+vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-mediatek.rc|14503ba6c23629ca852678c671fb508e79553172
 vendor/etc/init/android.hardware.biometrics.fingerprint@2.3-service.transsion.rc|21b317910a10eff349fed6262c753a0be65dfbcc
-vendor/lib64/vendor.mediatek.hardware.biometrics.fingerprint@2.1.so|8b4a1af8018aa4c625a7829d3ffcbdc0ccf85f57
+vendor/etc/vintf/manifest/android.hardware.biometrics.fingerprint@2.1-service-mediatek.xml|ad74278e3dcd98a0cf827f798eab27f3249b601e
+vendor/etc/vintf/manifest/android.hardware.biometrics.fingerprint@2.3-service.transsion.xml|75cbb1f959fb56709ff757549d89e495588744e1
+vendor/lib64/hw/gf_fingerprint.default.so;FIX_SONAME|3fc853bf58aa006e69931e9afb1e407b11aa9674|3fc853bf58aa006e69931e9afb1e407b11aa9674
 
 # Firmware
 vendor/firmware/aw87xxx_acf.bin
