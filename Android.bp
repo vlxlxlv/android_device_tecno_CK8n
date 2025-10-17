@@ -4,10 +4,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-soong_namespace {
-    imports: ["vendor/tecno/CK8n"],
-}
-
 cc_prebuilt_library_shared {
     name: "libbinder-v31",
     vendor: true,
