@@ -300,6 +300,10 @@ ro.soc.manufacturer=Mediatek
 ro.soc.model=MT6893Z_T/CZA
 
 # SurfaceFlinger
+debug.sf.auto_latch_unsignaled=1
+debug.sf.disable_backpressure=1
+debug.sf.disable_client_composition_cache=1
+debug.sf.defer_refresh_rate_when_off=1
 debug.hwui.skia_atrace_enabled=false
 debug.sf.enable_gl_backpressure=0
 debug.sf.early.app.duration=16600000
