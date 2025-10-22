@@ -628,10 +628,15 @@
         "Value": "100"
       },
       {
-      "PowerHint": "DOUBLE_TAP_TO_WAKE",
-      "Node": "DoubleTapToWake",
-      "Duration": 0,
-      "Value": "cc1"
+        "PowerHint": "DOUBLE_TAP_TO_WAKE",
+        "Node": "DoubleTapToWake",
+        "Duration": 0,
+        "Value": "cc1"
+      },
+      {
+        "PowerHint": "EXPENSIVE_RENDERING",
+        "Type": "EndHint",
+        "Value": "INTERACTION"
       }
     ]
   }
