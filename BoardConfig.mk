@@ -82,9 +82,6 @@ TARGET_NO_BOOTLOADER := true
 # Display
 TARGET_SCREEN_DENSITY := 480
 
-# Graphics
-TARGET_USES_VULKAN := true
-
 # Kernel
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 
