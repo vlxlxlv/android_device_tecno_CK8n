@@ -405,7 +405,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel \
     hardware/mediatek \
     hardware/mediatek/libmtkperf_client \
-    hardware/transsion
+    hardware/transsion \
+    hardware/mediatek/wlan/wifi_hal
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -437,17 +438,12 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
 
 # Wi-Fi
-PRODUCT_PACKAGES += \
-    libkeystore-wifi-hidl \
-    libkeystore-engine-wifi-hidl \
-    android.hardware.wifi-service \
-    hostapd \
-    libwifi-hal-wrapper \
-    wpa_supplicant
+$(call soong_config_set,wpa_supplicant_8,board_wlan_mediatek_stability,true)
 
 PRODUCT_PACKAGES += \
-    android.hardware.tetheroffload.config@1.0.vendor \
-    android.hardware.tetheroffload.control@1.1.vendor
+    wpa_supplicant \
+    hostapd \
+    android.hardware.wifi-service
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
