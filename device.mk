@@ -256,7 +256,6 @@ PRODUCT_COPY_FILES += \
 # Overlays
 PRODUCT_PACKAGES += \
     FrameworksResOverlayCK8n \
-    PowerOffAlarmOverlayCK8n \
     SettingsOverlayCK8n \
     SettingsProviderOverlayCK8n \
     SystemUIOverlayCK8n \
