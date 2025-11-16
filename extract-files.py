@@ -87,6 +87,8 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('liblog.so'),
     'vendor/lib64/mt6893/libmnl.so': blob_fixup()
         .add_needed('libcutils.so'),
+    'vendor/etc/libnfc-hal-st.conf': blob_fixup()
+        .regex_replace('STNFC_FW_DEBUG_ENABLED=1', 'STNFC_FW_DEBUG_ENABLED=0'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
