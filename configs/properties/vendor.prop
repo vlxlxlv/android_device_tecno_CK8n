@@ -221,6 +221,9 @@ ro.vendor.mtk_nn_baseline_support=1
 ro.vendor.mtk_nn_quant_preferred=1
 ro.vendor.mtk_nn_support=1
 
+# NFC
+ro.boot.product.hardware.sku=nfc
+
 # Power
 persist.vendor.iomanager.dirty=1
 persist.vendor.iomanager.switch=1

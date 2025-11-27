@@ -1,11 +1,10 @@
-# MTK platform .rc configure
-
 import /vendor/etc/init/hw/init_conninfra.rc
 import /vendor/etc/init/hw/init.connectivity.common.rc
 import /vendor/etc/init/hw/init.mt6893.usb.rc
 import /vendor/etc/init/hw/init.project.rc
 import /vendor/etc/init/hw/init.sensor_2_0.rc
 import /vendor/etc/init/hw/init.mt6893.power.rc
+import /vendor/etc/init/hw/init.stnfc.rc
 
 # init.modem.rc must be the LAST rc file because vold.post_fs_data_done is set in it
 import /vendor/etc/init/hw/init.modem.rc
@@ -44,8 +43,6 @@ on init
      # dex2oat_threads add by dewang.tan 20231227 start
     setprop persist.vendor.powerhal.dex2oat_threads 0
      # dex2oat_threads add by dewang.tan 20231227 end
-
-
 
 #BSP:add XLLSHLSSP-17 for tranfs by shentao.yang 20190603 start
     mkdir /tranfs 0771 system system

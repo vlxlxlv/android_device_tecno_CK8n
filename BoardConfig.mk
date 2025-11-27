@@ -110,6 +110,12 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(sort $(BOARD_VENDOR_RAMDISK_KERNEL_MODU
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules/modules.load.vendor))
 BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_PATH)/modules/vendor/*.ko)
 
+# NFC
+ODM_MANIFEST_SKUS += nfc
+
+ODM_MANIFEST_NFC_FILES += \
+    hardware/interfaces/compatibility_matrices/manifest.empty.xml
+
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # 4096 * 64 (pagesize)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864

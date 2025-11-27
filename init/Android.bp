@@ -81,8 +81,8 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "init.nfc.CK8n.rc",
-    src: "init.nfc.CK8n.rc",
+    name: "init.stnfc.rc",
+    src: "init.stnfc.rc",
     sub_dir: "init/hw",
     vendor: true,
 }
