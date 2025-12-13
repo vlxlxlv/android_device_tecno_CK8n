@@ -81,13 +81,6 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "init.stnfc.rc",
-    src: "init.stnfc.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
     name: "ueventd.mt6893.rc",
     filename: "ueventd.rc",
     src: "ueventd.mt6893.rc",
