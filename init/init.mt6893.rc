@@ -13,37 +13,7 @@ import /vendor/etc/init/hw/init.modem.rc
 on early-init
     write /sys/module/drm/parameters/vblankoffdelay -1
 
-    # boot perf. tune
-    write /proc/perfmgr/boost_ctrl/cpu_ctrl/boot_freq "0 0 0 0 0 0"
-    write /sys/devices/platform/boot_dramboost/dramboost/dramboost 1
-
-    # initialize vendor.all.modules.ready to 1 here to prevent NOT GKI project blocked
-    setprop vendor.all.modules.ready 1
-
-# Keep debugfs mounted in non-user builds
-on early-init && property:ro.build.type=eng
-    mount debugfs debugfs /sys/kernel/debug
-    chmod 0755 /sys/kernel/debug
-    setprop persist.dbg.keep_debugfs_mounted true
-
-on early-init && property:ro.build.type=userdebug
-    mount debugfs debugfs /sys/kernel/debug
-    chmod 0755 /sys/kernel/debug
-    setprop persist.dbg.keep_debugfs_mounted true
-
 on init
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-
-    # if primary storage is physical, set ro.vold.primary_physical to 1
-    # setprop ro.vold.primary_physical 1
-
-    mkdir /mnt/cd-rom 0000 system system
-
-     # dex2oat_threads add by dewang.tan 20231227 start
-    setprop persist.vendor.powerhal.dex2oat_threads 0
-     # dex2oat_threads add by dewang.tan 20231227 end
-
 #BSP:add XLLSHLSSP-17 for tranfs by shentao.yang 20190603 start
     mkdir /tranfs 0771 system system
 #BSP:add XLLSHLSSP-17 for tranfs by shentao.yang 20190603 end
@@ -90,16 +60,11 @@ on property:init.svc.vendor.charger=running
     start fuelgauged_nvram
 
 on charger
-    write /proc/perfmgr/boost_ctrl/cpu_ctrl/boot_freq "-1 -1 -1 -1 -1 -1"
-    write /sys/devices/platform/boot_dramboost/dramboost/dramboost 0
-
     # Configure default brightness and switch to drm backlight trigger.
     write /sys/class/leds/lcd-backlight/brightness 1000
     write /sys/class/leds/lcd-backlight/trigger "backlight-drm"
 
 on fs
-    start vendor.boot-hal-1-2
-
     # mount fstab
     mount_all --early
     #BSP:add mtk patchs  CKJNHJ-4545 by zhenglong.hong 20230420 start
@@ -997,19 +962,6 @@ on boot
     chown system radio /dev/ttyGS1
 #Power Manager
     write /sys/power/pm_freeze_timeout 2000
-
-on property:sys.boot_completed=1
-#SPD: add for control dex2oat cpu by fan.feng1 20230619 start
-    write /dev/cpuset/dex2oat/cpus 0-3
-    write /dev/cpuctl/dex2oat/cpu.shares 512
-    setprop persist.vendor.powerhal.dex2oat_threads 4
-#SPD: add for control dex2oat cpu by fan.feng1 20230619 end
-#KERENL: add cgroup customise profiles by chaoquan.li at 20240110 start
-    write /dev/cpuset/foreground-l/cpus 0-6
-    write /dev/cpuset/background-l/cpus 0-1
-    write /dev/cpuctl/foreground-l/cpu.shares 2048
-    write /dev/cpuctl/background-l/cpu.shares 512
-#KERENL: add cgroup customise profiles by chaoquan.li at 20240110 end
 
 on property:sys.boot_completed=1
     write /sys/devices/platform/odm/odm:tran_battery/OTG_CTL 1
