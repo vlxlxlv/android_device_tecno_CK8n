@@ -19,35 +19,37 @@
 #include <hardware/sensors.h>
 #include <log/log.h>
 #include <utils/SystemClock.h>
+#include <linux/input.h>
 
 #include <cmath>
 
 namespace {
 
-static bool readFpState(int fd, int& screenX, int& screenY) {
-    char buffer[512];
-    int state = 0;
-    int rc;
-
-    rc = lseek(fd, 0, SEEK_SET);
-    if (rc) {
-        ALOGE("failed to seek: %d", rc);
+static bool readFpEvent(int fd, int& screenX, int& screenY) {
+    struct input_event ev;
+    ssize_t rb = read(fd, &ev, sizeof(struct input_event));
+    
+    if (rb < (ssize_t)sizeof(struct input_event)) {
         return false;
     }
 
-    rc = read(fd, &buffer, sizeof(buffer));
-    if (rc < 0) {
-        ALOGE("failed to read state: %d", rc);
-        return false;
+    if (ev.code == 0xc3) {
+        bool isPressed = (ev.value == 195);
+
+        if (isPressed) {
+            ALOGI("FOD Pressed detected: code=0xc3, value=195 (DOWN)");
+
+            screenX = 0; 
+            screenY = 0;
+            
+            return true; 
+        } else {
+            ALOGD("FOD Released or other state: value=%d", ev.value);
+            return false;
+        }
     }
 
-    rc = sscanf(buffer, "%d,%d,%d", &screenX, &screenY, &state);
-    if (rc < 0) {
-        ALOGE("failed to parse fp state: %d", rc);
-        return false;
-    }
-
-    return state > 0;
+    return false;
 }
 
 }  // anonymous namespace
@@ -242,25 +244,20 @@ UdfpsSensor::UdfpsSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
         ALOGE("failed to open wait pipe: %d", rc);
     }
 
-    mPollFd = open("/sys/devices/platform/soc/11013000.spi3/spi_master/spi3/spi3.0/fts_gesture_fod_pressed", O_RDONLY);
+    mPollFd = open("/dev/input/event4", O_RDONLY | O_NONBLOCK);
     if (mPollFd < 0) {
-        ALOGE("failed to open poll fd: %d", mPollFd);
+        ALOGE("failed to open input event4: %d", mPollFd);
     }
+
+    mPolls[1] = {
+            .fd = mPollFd,
+            .events = POLLIN, 
+    };
 
     if (mWaitPipeFd[0] < 0 || mWaitPipeFd[1] < 0 || mPollFd < 0) {
         mStopThread = true;
         return;
     }
-
-    mPolls[0] = {
-            .fd = mWaitPipeFd[0],
-            .events = POLLIN,
-    };
-
-    mPolls[1] = {
-            .fd = mPollFd,
-            .events = POLLERR | POLLPRI,
-    };
 }
 
 UdfpsSensor::~UdfpsSensor() {
@@ -292,7 +289,6 @@ void UdfpsSensor::run() {
                 return ((mIsEnabled && mMode == OperationMode::NORMAL) || mStopThread);
             });
         } else {
-            // Cannot hold lock while polling.
             runLock.unlock();
             int rc = poll(mPolls, 2, -1);
             runLock.lock();
@@ -303,10 +299,15 @@ void UdfpsSensor::run() {
                 continue;
             }
 
-            if (mPolls[1].revents == mPolls[1].events && readFpState(mPollFd, mScreenX, mScreenY)) {
-                mIsEnabled = false;
-                mCallback->postEvents(readEvents(), isWakeUpSensor());
-            } else if (mPolls[0].revents == mPolls[0].events) {
+            if (mPolls[1].revents & POLLIN) {
+                if (readFpEvent(mPollFd, mScreenX, mScreenY)) {
+                    ALOGI("FOD Pressed detected via 0xc3");
+                    mIsEnabled = false;
+                    mCallback->postEvents(readEvents(), isWakeUpSensor());
+                }
+            } 
+
+            if (mPolls[0].revents & POLLIN) {
                 char buf;
                 read(mWaitPipeFd[0], &buf, sizeof(buf));
             }
