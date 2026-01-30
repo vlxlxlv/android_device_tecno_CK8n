@@ -15,40 +15,59 @@
  */
 
 #include "Sensor.h"
-
 #include <hardware/sensors.h>
 #include <log/log.h>
 #include <utils/SystemClock.h>
+#include <dirent.h>
+#include <fcntl.h>
 #include <linux/input.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 
 #include <cmath>
 
 namespace {
 
+static int findEventByCode(int targetCode) {
+    char devPath[PATH_MAX];
+    int fd;
+    uint8_t keyBits[KEY_MAX / 8 + 1];
+
+    for (int i = 0; i < 32; i++) {
+        snprintf(devPath, sizeof(devPath), "/dev/input/event%d", i);
+        fd = open(devPath, O_RDONLY | O_NONBLOCK);
+        if (fd < 0) continue;
+
+        memset(keyBits, 0, sizeof(keyBits));
+        if (ioctl(fd, EVIOCGBIT(EV_KEY, sizeof(keyBits)), keyBits) >= 0 ||
+            ioctl(fd, EVIOCGBIT(EV_MSC, sizeof(keyBits)), keyBits) >= 0) {
+            
+            if (keyBits[targetCode / 8] & (1 << (targetCode % 8))) {
+                return fd;
+            }
+        }
+        close(fd);
+    }
+    return -1;
+}
+
 static bool readFpEvent(int fd, int& screenX, int& screenY) {
     struct input_event ev;
     ssize_t rb = read(fd, &ev, sizeof(struct input_event));
-    
-    if (rb < (ssize_t)sizeof(struct input_event)) {
-        return false;
+    if (rb < (ssize_t)sizeof(struct input_event)) return false;
+
+    if (ev.type == EV_ABS) {
+        if (ev.code == ABS_MT_POSITION_X) screenX = ev.value;
+        if (ev.code == ABS_MT_POSITION_Y) screenY = ev.value;
     }
 
-    if (ev.code == 0xc3) {
-        bool isPressed = (ev.value == 195);
-
-        if (isPressed) {
-            ALOGI("FOD Pressed detected: code=0xc3, value=195 (DOWN)");
-
-            screenX = 0; 
-            screenY = 0;
-            
-            return true; 
-        } else {
-            ALOGD("FOD Released or other state: value=%d", ev.value);
+    if (ev.type == EV_KEY && ev.code == 0xc3) {
+        if (ev.value == 1) {
+            return true;
+        } else if (ev.value == 0) {
             return false;
         }
     }
-
     return false;
 }
 
@@ -227,37 +246,18 @@ OneShotSensor::OneShotSensor(int32_t sensorHandle, ISensorsEventCallback* callba
 UdfpsSensor::UdfpsSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
     : OneShotSensor(sensorHandle, callback) {
     mSensorInfo.name = "UDFPS Sensor";
-    mSensorInfo.type =
-            static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) + 1);
+    mSensorInfo.type = static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) + 1);
     mSensorInfo.typeAsString = "org.lineageos.sensor.udfps";
-    mSensorInfo.maxRange = 2048.0f;
-    mSensorInfo.resolution = 1.0f;
-    mSensorInfo.power = 0;
     mSensorInfo.flags |= SensorFlagBits::WAKE_UP;
 
-    int rc;
-
-    rc = pipe(mWaitPipeFd);
-    if (rc < 0) {
-        mWaitPipeFd[0] = -1;
-        mWaitPipeFd[1] = -1;
-        ALOGE("failed to open wait pipe: %d", rc);
+    if (pipe(mWaitPipeFd) < 0) {
+        mWaitPipeFd[0] = mWaitPipeFd[1] = -1;
     }
 
-    mPollFd = open("/dev/input/event4", O_RDONLY | O_NONBLOCK);
-    if (mPollFd < 0) {
-        ALOGE("failed to open input event4: %d", mPollFd);
-    }
+    mPollFd = findEventByCode(0xc3);
 
-    mPolls[1] = {
-            .fd = mPollFd,
-            .events = POLLIN, 
-    };
-
-    if (mWaitPipeFd[0] < 0 || mWaitPipeFd[1] < 0 || mPollFd < 0) {
-        mStopThread = true;
-        return;
-    }
+    mPolls[0] = { .fd = mWaitPipeFd[0], .events = POLLIN };
+    mPolls[1] = { .fd = mPollFd, .events = POLLIN };
 }
 
 UdfpsSensor::~UdfpsSensor() {
@@ -266,10 +266,12 @@ UdfpsSensor::~UdfpsSensor() {
 
 void UdfpsSensor::activate(bool enable) {
     std::lock_guard<std::mutex> lock(mRunMutex);
-
     if (mIsEnabled != enable) {
+        if (enable) {
+            flushEvents(mPollFd);
+        }
+        
         mIsEnabled = enable;
-
         interruptPoll();
         mWaitCV.notify_all();
     }
@@ -293,23 +295,23 @@ void UdfpsSensor::run() {
             int rc = poll(mPolls, 2, -1);
             runLock.lock();
 
-            if (rc < 0) {
-                ALOGE("failed to poll: %d", rc);
-                mStopThread = true;
-                continue;
-            }
-
-            if (mPolls[1].revents & POLLIN) {
-                if (readFpEvent(mPollFd, mScreenX, mScreenY)) {
-                    ALOGI("FOD Pressed detected via 0xc3");
-                    mIsEnabled = false;
-                    mCallback->postEvents(readEvents(), isWakeUpSensor());
-                }
-            } 
+            if (rc < 0) continue;
 
             if (mPolls[0].revents & POLLIN) {
                 char buf;
                 read(mWaitPipeFd[0], &buf, sizeof(buf));
+            }
+
+            if (mPolls[1].revents & POLLIN) {
+                if (readFpEvent(mPollFd, mScreenX, mScreenY)) {
+                    
+                    runLock.unlock();
+                    std::this_thread::sleep_for(std::chrono::milliseconds(130));
+                    runLock.lock();
+                    
+                    mIsEnabled = false;
+                    mCallback->postEvents(readEvents(), isWakeUpSensor());
+                }
             }
         }
     }
@@ -329,9 +331,13 @@ std::vector<Event> UdfpsSensor::readEvents() {
 
 void UdfpsSensor::interruptPoll() {
     if (mWaitPipeFd[1] < 0) return;
-
     char c = '1';
     write(mWaitPipeFd[1], &c, sizeof(c));
+}
+
+void UdfpsSensor::flushEvents(int fd) {
+    struct input_event ev;
+    while (read(fd, &ev, sizeof(ev)) > 0);
 }
 
 }  // namespace implementation

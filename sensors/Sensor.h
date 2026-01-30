@@ -105,7 +105,8 @@ class UdfpsSensor : public OneShotSensor {
 
   private:
     void interruptPoll();
-
+    void flushEvents(int fd);
+    
     struct pollfd mPolls[2];
     int mWaitPipeFd[2];
     int mPollFd;
