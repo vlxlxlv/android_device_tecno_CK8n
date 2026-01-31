@@ -1591,11 +1591,11 @@ vendor/bin/v3avpud
 vendor/etc/init/android.hardware.media.c2@1.2-mediatek.rc
 vendor/etc/init/v3avpud.rc
 vendor/etc/vintf/manifest/manifest_media_c2_V1_1_default.xml:vendor/etc/vintf/manifest/manifest_media_c2_V1_2_default.xml
-vendor/lib/AV1SecureVdecCA.so
-vendor/lib/AVCSecureVdecCA.so
-vendor/lib/HEVCSecureVdecCA.so
-vendor/lib/VP9SecureVdecCA.so
-vendor/lib/libAVCSecureVencCA.so
+vendor/lib/AV1SecureVdecCA_510.so
+vendor/lib/AVCSecureVdecCA_510.so
+vendor/lib/HEVCSecureVdecCA_510.so
+vendor/lib/VP9SecureVdecCA_510.so
+vendor/lib/libAVCSecureVencCA_510.so
 vendor/lib/libHEVCdec_sa.ca7.android.so;DISABLE_CHECKELF
 vendor/lib/libadpcmdec_mtk.so
 vendor/lib/libcodec2_mtk_c2store.so
@@ -1630,11 +1630,11 @@ vendor/lib/libvp9dec_sa.ca7.so;DISABLE_CHECKELF
 vendor/lib/libvpu.so
 vendor/lib/libvpu5.so
 vendor/lib/libvpudv3a_vcodec.so
-vendor/lib64/AV1SecureVdecCA.so
-vendor/lib64/AVCSecureVdecCA.so
-vendor/lib64/HEVCSecureVdecCA.so
-vendor/lib64/VP9SecureVdecCA.so
-vendor/lib64/libAVCSecureVencCA.so
+vendor/lib64/AV1SecureVdecCA_510.so
+vendor/lib64/AVCSecureVdecCA_510.so
+vendor/lib64/HEVCSecureVdecCA_510.so
+vendor/lib64/VP9SecureVdecCA_510.so
+vendor/lib64/libAVCSecureVencCA_510.so
 vendor/lib64/libadpcmdec_mtk.so
 vendor/lib64/libcodec2_mtk_c2store.so
 vendor/lib64/libcodec2_mtk_vdec.so
@@ -1842,11 +1842,11 @@ vendor/lib/hw/vendor.mediatek.hardware.videotelephony@1.0-impl.so
 vendor/lib/libipsec_ims_shr.so
 vendor/lib/libvt_custom.so
 vendor/lib/vendor.mediatek.hardware.rcs@2.0.so
-vendor/lib/vendor.mediatek.hardware.videotelephony@1.0.so;MODULE_SUFFIX=_vendor
+vendor/lib/vendor.mediatek.hardware.videotelephony@1.0.so
 vendor/lib64/hw/vendor.mediatek.hardware.videotelephony@1.0-impl.so
 vendor/lib64/libipsec_ims_shr.so
 vendor/lib64/vendor.mediatek.hardware.clientapi@1.0.so
-vendor/lib64/vendor.mediatek.hardware.videotelephony@1.0.so;MODULE_SUFFIX=_vendor
+vendor/lib64/vendor.mediatek.hardware.videotelephony@1.0.so
 
 # Sensors
 vendor/lib64/hw/sensors.mt6893.so
