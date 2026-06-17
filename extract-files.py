@@ -50,8 +50,6 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libalsautils.so', 'libalsautils-v32.so'),
     'vendor/etc/init/android.hardware.neuralnetworks@1.3-service-mtk-neuron.rc': blob_fixup()
         .regex_replace('start', 'enable'),
-    'vendor/etc/init/init.thermal_core.rc': blob_fixup()
-        .regex_replace('ro.vendor.mtk_thermal_2_0', 'vendor.thermal.link_ready'),
     'vendor/etc/vintf/manifest/manifest_media_c2_V1_2_default.xml': blob_fixup()
         .regex_replace('1.1', '1.2'),
     ('vendor/bin/hw/android.hardware.neuralnetworks@1.3-service-mtk-neuron', 'vendor/bin/nfcstackp-vendor', 'vendor/lib64/libnvram.so', 'vendor/lib64/libsysenv.so', 'vendor/lib64/libtflite_mtk.so'): blob_fixup()
