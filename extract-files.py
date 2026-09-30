@@ -20,7 +20,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
-    'device/infinix/X6739',
+    'device/tecno/CK8n',
     'hardware/mediatek',
     'hardware/mediatek/libmtkperf_client',
     'hardware/mediatek/libaedv',
@@ -59,7 +59,7 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libbase_shim.so'),
     'vendor/lib64/hw/hwcomposer.mt6893.so': blob_fixup()
         .add_needed('libprocessgroup_shim.so'),
-    ('vendor/lib64/libtranssion_bodybeauty.so', 'vendor/lib64/mt6789/libeffect_hal.so', 'vendor/lib64/libsegmentionPre.so', 'vendor/lib64/libMegviiHum.so'): blob_fixup()
+    ('vendor/lib64/libtranssion_bodybeauty.so', 'vendor/lib64/libeffect_hal.so', 'vendor/lib64/libsegmentionPre.so', 'vendor/lib64/libMegviiHum.so'): blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_createFromHandle')
         .clear_symbol_version('AHardwareBuffer_describe')
@@ -70,10 +70,6 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('AHardwareBuffer_unlock'),
     'vendor/bin/hw/mtkfusionrild': blob_fixup()
         .add_needed('libutils-v31.so'),
-    'vendor/lib64/hw/mt6789/vendor.mediatek.hardware.camera.isphal@1.0-impl.so': blob_fixup()
-        .replace_needed('libhidlbase.so', 'libhidlbase-v31.so')
-        .replace_needed('libbinder.so', 'libbinder-v31.so')
-        .replace_needed('libutils.so', 'libutils-v31.so'),
     'vendor/bin/hw/camerahalserver': blob_fixup()
         .replace_needed('libhidlbase.so', 'libhidlbase-v31.so')
         .replace_needed('libbinder.so', 'libbinder-v31.so')
@@ -99,8 +95,8 @@ blob_fixups: blob_fixups_user_type = {
 }  # fmt: skip
 
 module = ExtractUtilsModule(
-    'X6739',
-    'infinix',
+    'CK8n',
+    'tecno',
     blob_fixups=blob_fixups,
     lib_fixups=lib_fixups,
     namespace_imports=namespace_imports,

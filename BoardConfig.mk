@@ -4,8 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/infinix/X6739
-KERNEL_PATH := device/infinix/X6739-kernel
+DEVICE_PATH := device/tecno/CK8n
+KERNEL_PATH := device/tecno/CK8n-kernel
 
 # A/B
 AB_OTA_PARTITIONS += \
@@ -76,7 +76,7 @@ BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 bootconfig
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := Infinix-X6739
+TARGET_BOOTLOADER_BOARD_NAME := TECNO-CK8n
 TARGET_NO_BOOTLOADER := true
 
 # Display
@@ -96,18 +96,18 @@ BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 BOARD_PREBUILT_DTBIMAGE_DIR := $(KERNEL_PATH)/dtb
 
 ## vendor_boot modules
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules/modules.load.vendor_boot))
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_PATH)/modules/vendor_boot/modules.load))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(addprefix $(KERNEL_PATH)/modules/vendor_boot/, $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD))
 
 ## recovery modules
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules/modules.load.recovery))
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_PATH)/modules/vendor_boot/modules.load.recovery))
 RECOVERY_MODULES := $(addprefix $(KERNEL_PATH)/modules/vendor_boot/, $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD))
 
 ## Prevent duplicated entries (to solve duplicated build rules problem)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(sort $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES) $(RECOVERY_MODULES))
 
 ## vendor modules
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules/modules.load.vendor))
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_PATH)/modules/vendor/modules.load))
 BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_PATH)/modules/vendor/*.ko)
 
 # NFC
@@ -125,10 +125,10 @@ BOARD_USES_METADATA_PARTITION := true
 
 # Partitions - Dynamic
 BOARD_SUPER_PARTITION_SIZE := 11378286592
-BOARD_SUPER_PARTITION_GROUPS := infinix_dynamic_partitions
-BOARD_INFINIX_DYNAMIC_PARTITIONS_SIZE := 11374092288 # (BOARD_SUPER_PARTITION_SIZE - 4MB)
+BOARD_SUPER_PARTITION_GROUPS := tecno_dynamic_partitions
+BOARD_TECNO_DYNAMIC_PARTITIONS_SIZE := 11374092288 # (BOARD_SUPER_PARTITION_SIZE - 4MB)
 
-BOARD_INFINIX_DYNAMIC_PARTITIONS_PARTITION_LIST := \
+BOARD_TECNO_DYNAMIC_PARTITIONS_PARTITION_LIST := \
 	system \
     system_ext \
     product \
@@ -231,4 +231,4 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WIFI_FEATURE_HOSTAPD_11AX := true
 
 # Inherit the proprietary files
-include vendor/infinix/X6739/BoardConfigVendor.mk
+include vendor/tecno/CK8n/BoardConfigVendor.mk
