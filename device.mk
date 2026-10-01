@@ -414,8 +414,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/mediatek \
     hardware/mediatek/libaedv \
-    hardware/mediatek/libmtkperf_client \
-    hardware/transsion
+    hardware/mediatek/libmtkperf_client
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -423,10 +422,8 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0.vendor
 
 # Vibrator
-VIBRATOR_SUPPORTS_EFFECTS := true
-
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.transsion
+    android.hardware.vibrator-service.mediatek
 
 # VNDK
 PRODUCT_PACKAGES += \
