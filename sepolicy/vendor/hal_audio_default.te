@@ -1,3 +1,5 @@
+allow hal_audio_default mtk_audiohal_data_file:fifo_file { create open read write getattr setattr unlink };
+
 get_prop(hal_audio_default, vendor_exported_system_prop)
 
 rw_dir_file(hal_audio_default, sysfs_batteryinfo)
